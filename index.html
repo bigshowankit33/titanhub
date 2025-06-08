@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITAN HUB - Movies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'netflix-red': '#e50914',
+                    },
+                    animation: {
+                        'text-shine': 'text-shine 2s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        'text-shine': {
+                            '0%': { 'background-position': '0% 50%' },
+                            '100%': { 'background-position': '100% 50%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(229, 9, 20, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(229, 9, 20, 0.8); }
+        }
+        .glow-text {
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(229, 9, 20, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(229, 9, 20, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .card-bg {
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-glass {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #e50914, #ff0f1f);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full nav-glass z-50">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-bold relative group">
+                        <a href="index.html" class="flex items-center gap-1">
+                            <span class="inline-block bg-gradient-to-r from-netflix-red via-red-600 to-red-500 bg-[length:200%_auto] bg-clip-text text-transparent animate-text-shine">
+                                TITAN
+                            </span>
+                            <span class="text-white/90 relative">
+                                HUB
+                                <span class="absolute -top-1 -right-1 w-2 h-2 bg-netflix-red rounded-full animate-pulse-slow"></span>
+                            </span>
+                            <span class="text-netflix-red text-sm ml-1 glow-text">®</span>
+                        </a>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-netflix-red to-red-500 group-hover:w-full transition-all duration-300"></span>
+                    </h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="index.html" class="nav-link text-netflix-red px-3 py-2 text-sm font-medium">
+                            Home
+                        </a>
+                        <a href="Movies.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
+                            MOVIES
+                        </a>
+                        <a href="contact.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
+                            Contact
+                        </a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-gray-400 hover:text-white focus:outline-none transition-colors duration-300">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
+        <h2 class="text-3xl font-bold mb-8">Cartoons Download links</h2>
+        
+        <!-- Grid Container -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Cartoon Card 1 -->
+            <div class="card-bg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                <a href="kochikame.html">
+                    <img src="images/kochikame.jpg" 
+                         alt="Kochikame" 
+                         class="w-full h-64 object-cover">
+                </a>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-2">KOCHIKAME</h3>
+                    <p class="text-gray-400 text-sm mb-4">watch/download kochikame now in hindi free for all</p>
+                    <a href="kochikame.html" class="block w-full bg-netflix-red text-white text-center py-2 rounded-md transform transition duration-300 hover:bg-red-700">
+                        Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- Cartoon Card 2 -->
+            <div class="card-bg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                <a href="ben 10 UA  1.html">
+                    <img src="images/ben 10 UA.jpg" 
+                         alt="Ben 10 Ultimate Alien (Season 1)" 
+                         class="w-full h-64 object-cover">
+                </a>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-2">Ben 10 Ultimate Alien (Season 1)</h3>
+                    <p class="text-gray-400 text-sm mb-4">Ben 10 Ultimate Alien s1 full hd episodes in hindi download now </p>
+                    <a href="ben 10 UA  1.html" class="block w-full bg-netflix-red text-white text-center py-2 rounded-md transform transition duration-300 hover:bg-red-700">
+                        Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- Cartoon Card 3 -->
+            <div class="card-bg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                <a href="#">
+                    <img src="https://via.placeholder.com/300x450/1f1f1f/ffffff?text=Scooby+Doo" 
+                         alt="Scooby Doo" 
+                         class="w-full h-64 object-cover">
+                </a>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-2">Scooby-Doo</h3>
+                    <p class="text-gray-400 text-sm mb-4">Mystery-solving adventures with the famous talking dog.</p>
+                    <a href="#" class="block w-full bg-netflix-red text-white text-center py-2 rounded-md transform transition duration-300 hover:bg-red-700">
+                        Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- Cartoon Card 4 -->
+            <div class="card-bg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                <a href="#">
+                    <img src="https://via.placeholder.com/300x450/1f1f1f/ffffff?text=The+Flintstones" 
+                         alt="The Flintstones" 
+                         class="w-full h-64 object-cover">
+                </a>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-2">The Flintstones</h3>
+                    <p class="text-gray-400 text-sm mb-4">Modern Stone Age family living in Bedrock.</p>
+                    <a href="#" class="block w-full bg-netflix-red text-white text-center py-2 rounded-md transform transition duration-300 hover:bg-red-700">
+                        Download
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div class="hidden md:hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="index.html" class="text-netflix-red block px-3 py-2 rounded-md text-base font-medium">Home</a>
+            <a href="Movies.html" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">MOVIES</a>
+            <a href="contact.html" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+        </div>
+    </div>
+</body>
+</html> 

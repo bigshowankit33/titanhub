@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITAN HUB - Ben 10 Ultimate Alien</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'netflix-red': '#e50914',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glow-text {
+            animation: glow 2s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(229, 9, 20, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(229, 9, 20, 0.8); }
+        }
+        body {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+            background-attachment: fixed;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(229, 9, 20, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(229, 9, 20, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .card-bg {
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .nav-glass {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #e50914, #ff0f1f);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full nav-glass z-50">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-bold relative group">
+                        <a href="index.html" class="flex items-center gap-1">
+                            <span class="inline-block bg-gradient-to-r from-netflix-red via-red-600 to-red-500 bg-clip-text text-transparent">
+                                TITAN
+                            </span>
+                            <span class="text-white/90 relative">
+                                HUB
+                                <span class="absolute -top-1 -right-1 w-2 h-2 bg-netflix-red rounded-full animate-pulse-slow"></span>
+                            </span>
+                            <span class="text-netflix-red text-sm ml-1 glow-text">®</span>
+                        </a>
+                    </h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="index.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="movies.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">MOVIES</a>
+                        <a href="contact.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-gray-400 hover:text-white focus:outline-none transition-colors duration-300">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
+        <div class="flex items-center gap-4 mb-8">
+            <a href="index.html" class="text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </a>
+            <h2 class="text-3xl font-bold">Ben 10 Ultimate Alien</h2>
+        </div>
+        <div class="card-bg rounded-lg p-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Episodes 1-20 -->
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 1</h3>
+                    <a href="https://shrinkme.ink/ScmnG1IK" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 2</h3>
+                    <a href="https://shrinkme.ink/DXm7t" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 3</h3>
+                    <a href="https://shrinkme.ink/s7alf" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 4</h3>
+                    <a href="https://shrinkme.ink/302c5" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 5</h3>
+                    <a href="https://shrinkme.ink/adZrc" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 6</h3>
+                    <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 7</h3>
+                    <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 8</h3>
+                    <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 9</h3>
+                    <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 10</h3>
+                    <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 11</h3>
+                    <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 12</h3>
+                    <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 13</h3>
+                    <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 14</h3>
+                    <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 15</h3>
+                    <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 16</h3>
+                    <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 17</h3>
+                    <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 18</h3>
+                    <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 19</h3>
+                    <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+                <div class="bg-[#232323] rounded-lg p-4 hover:bg-[#292929] transition-colors flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">Episode 20</h3>
+                    <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

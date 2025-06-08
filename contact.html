@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITAN HUB - Contact</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'netflix-red': '#e50914',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glow-text {
+            animation: glow 2s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(229, 9, 20, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(229, 9, 20, 0.8); }
+        }
+        body {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+            background-attachment: fixed;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(229, 9, 20, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(229, 9, 20, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .card-bg {
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .nav-glass {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #e50914, #ff0f1f);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full nav-glass z-50">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-bold relative group">
+                        <a href="index.html" class="flex items-center gap-1">
+                            <span class="inline-block bg-gradient-to-r from-netflix-red via-red-600 to-red-500 bg-clip-text text-transparent">
+                                TITAN
+                            </span>
+                            <span class="text-white/90 relative">
+                                HUB
+                                <span class="absolute -top-1 -right-1 w-2 h-2 bg-netflix-red rounded-full animate-pulse-slow"></span>
+                            </span>
+                            <span class="text-netflix-red text-sm ml-1 glow-text">®</span>
+                        </a>
+                    </h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="index.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="movies.html" class="nav-link text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">MOVIES</a>
+                        <a href="contact.html" class="nav-link text-netflix-red px-3 py-2 text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-gray-400 hover:text-white focus:outline-none transition-colors duration-300">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
+        <h2 class="text-3xl font-bold mb-8">Contact</h2>
+        <div class="card-bg rounded-lg p-8 max-w-lg mx-auto flex flex-col gap-8">
+            <a href="#" class="flex items-center gap-4 p-4 rounded-lg bg-black/40 hover:bg-netflix-red/80 transition-colors duration-300 shadow-lg">
+                <svg class="w-7 h-7 text-netflix-red" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 12H8m0 0l4-4m-4 4l4 4" />
+                </svg>
+                <span class="text-lg font-semibold">Email</span>
+                <span class="ml-auto text-gray-400 text-sm">colver333@gmail.com</span>
+            </a>
+            <a href="#" class="flex items-center gap-4 p-4 rounded-lg bg-black/40 hover:bg-netflix-red/80 transition-colors duration-300 shadow-lg">
+                <svg class="w-7 h-7 text-netflix-red" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.877v-6.987h-2.54v-2.89h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.242 0-1.632.771-1.632 1.562v1.875h2.773l-.443 2.89h-2.33v6.987C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/>
+                </svg>
+                <span class="text-lg font-semibold">Telegram</span>
+                <span class="ml-auto text-gray-400 text-sm">@BigshowGaming</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div class="hidden md:hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="index.html" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+            <a href="movies.html" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">MOVIES</a>
+            <a href="contact.html" class="text-netflix-red block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+        </div>
+    </div>
+</body>
+</html>
