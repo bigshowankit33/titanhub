@@ -16,8 +16,155 @@
             }
         }
     </script>
+    <style>
+        .card-bg {
+            background: linear-gradient(135deg, #2A2A2A 0%, #1F1F1F 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .animate-pulse-slow {
+            animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* Spark Effects */
+        .sparks-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .spark {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00a8ff;
+            border-radius: 50%;
+            box-shadow: 0 0 4px #00a8ff, 0 0 8px #00a8ff;
+            animation: sparkFloat 5s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes sparkFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .spark:nth-child(1) { left: 2%; animation-delay: 0s; }
+        .spark:nth-child(2) { left: 8%; animation-delay: 0.3s; }
+        .spark:nth-child(3) { left: 15%; animation-delay: 0.6s; }
+        .spark:nth-child(4) { left: 22%; animation-delay: 0.9s; }
+        .spark:nth-child(5) { left: 29%; animation-delay: 1.2s; }
+        .spark:nth-child(6) { left: 36%; animation-delay: 1.5s; }
+        .spark:nth-child(7) { left: 43%; animation-delay: 1.8s; }
+        .spark:nth-child(8) { left: 50%; animation-delay: 2.1s; }
+        .spark:nth-child(9) { left: 57%; animation-delay: 2.4s; }
+        .spark:nth-child(10) { left: 64%; animation-delay: 2.7s; }
+        .spark:nth-child(11) { left: 71%; animation-delay: 3.0s; }
+        .spark:nth-child(12) { left: 78%; animation-delay: 3.3s; }
+        .spark:nth-child(13) { left: 85%; animation-delay: 3.6s; }
+        .spark:nth-child(14) { left: 92%; animation-delay: 3.9s; }
+        .spark:nth-child(15) { left: 98%; animation-delay: 4.2s; }
+        .spark:nth-child(16) { left: 5%; animation-delay: 4.5s; }
+        .spark:nth-child(17) { left: 12%; animation-delay: 4.8s; }
+        .spark:nth-child(18) { left: 19%; animation-delay: 5.1s; }
+        .spark:nth-child(19) { left: 26%; animation-delay: 5.4s; }
+        .spark:nth-child(20) { left: 33%; animation-delay: 5.7s; }
+        .spark:nth-child(21) { left: 40%; animation-delay: 6.0s; }
+        .spark:nth-child(22) { left: 47%; animation-delay: 6.3s; }
+        .spark:nth-child(23) { left: 54%; animation-delay: 6.6s; }
+        .spark:nth-child(24) { left: 61%; animation-delay: 6.9s; }
+        .spark:nth-child(25) { left: 68%; animation-delay: 7.2s; }
+        .spark:nth-child(26) { left: 75%; animation-delay: 7.5s; }
+        .spark:nth-child(27) { left: 82%; animation-delay: 7.8s; }
+        .spark:nth-child(28) { left: 89%; animation-delay: 8.1s; }
+        .spark:nth-child(29) { left: 96%; animation-delay: 8.4s; }
+        .spark:nth-child(30) { left: 3%; animation-delay: 8.7s; }
+
+        .spark:nth-child(odd) {
+            animation-duration: 5s;
+        }
+
+        .spark:nth-child(even) {
+            animation-duration: 4.5s;
+        }
+
+        .spark:nth-child(3n) {
+            animation-duration: 5.5s;
+        }
+
+        .spark:nth-child(3n+1) {
+            animation-duration: 4s;
+        }
+
+        .spark:nth-child(5n) {
+            animation-duration: 6s;
+        }
+
+        .spark:nth-child(7n) {
+            animation-duration: 5.2s;
+        }
+    </style>
 </head>
 <body class="bg-[#1F1F1F] text-white min-h-screen">
+    <!-- Blue Fire Sparks -->
+    <div class="sparks-container">
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+    </div>
     <!-- Navigation Bar -->
     <nav class="fixed top-0 w-full bg-black/90 backdrop-blur-sm z-50 shadow-lg">
         <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -41,8 +41,8 @@
             pointer-events: none;
         }
         .card-bg {
-            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #2A2A2A 0%, #1F1F1F 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .nav-glass {
             background: rgba(0, 0, 0, 0.85);
@@ -67,9 +67,137 @@
         .nav-link:hover::after {
             width: 100%;
         }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+        }
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        /* Spark Effects */
+        .sparks-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .spark {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #00a8ff;
+            border-radius: 50%;
+            box-shadow: 0 0 4px #00a8ff, 0 0 8px #00a8ff;
+            animation: sparkFloat 5s linear infinite;
+            opacity: 0;
+        }
+        @keyframes sparkFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+        .spark:nth-child(1) { left: 2%; animation-delay: 0s; }
+        .spark:nth-child(2) { left: 8%; animation-delay: 0.3s; }
+        .spark:nth-child(3) { left: 15%; animation-delay: 0.6s; }
+        .spark:nth-child(4) { left: 22%; animation-delay: 0.9s; }
+        .spark:nth-child(5) { left: 29%; animation-delay: 1.2s; }
+        .spark:nth-child(6) { left: 36%; animation-delay: 1.5s; }
+        .spark:nth-child(7) { left: 43%; animation-delay: 1.8s; }
+        .spark:nth-child(8) { left: 50%; animation-delay: 2.1s; }
+        .spark:nth-child(9) { left: 57%; animation-delay: 2.4s; }
+        .spark:nth-child(10) { left: 64%; animation-delay: 2.7s; }
+        .spark:nth-child(11) { left: 71%; animation-delay: 3.0s; }
+        .spark:nth-child(12) { left: 78%; animation-delay: 3.3s; }
+        .spark:nth-child(13) { left: 85%; animation-delay: 3.6s; }
+        .spark:nth-child(14) { left: 92%; animation-delay: 3.9s; }
+        .spark:nth-child(15) { left: 98%; animation-delay: 4.2s; }
+        .spark:nth-child(16) { left: 5%; animation-delay: 4.5s; }
+        .spark:nth-child(17) { left: 12%; animation-delay: 4.8s; }
+        .spark:nth-child(18) { left: 19%; animation-delay: 5.1s; }
+        .spark:nth-child(19) { left: 26%; animation-delay: 5.4s; }
+        .spark:nth-child(20) { left: 33%; animation-delay: 5.7s; }
+        .spark:nth-child(21) { left: 40%; animation-delay: 6.0s; }
+        .spark:nth-child(22) { left: 47%; animation-delay: 6.3s; }
+        .spark:nth-child(23) { left: 54%; animation-delay: 6.6s; }
+        .spark:nth-child(24) { left: 61%; animation-delay: 6.9s; }
+        .spark:nth-child(25) { left: 68%; animation-delay: 7.2s; }
+        .spark:nth-child(26) { left: 75%; animation-delay: 7.5s; }
+        .spark:nth-child(27) { left: 82%; animation-delay: 7.8s; }
+        .spark:nth-child(28) { left: 89%; animation-delay: 8.1s; }
+        .spark:nth-child(29) { left: 96%; animation-delay: 8.4s; }
+        .spark:nth-child(30) { left: 3%; animation-delay: 8.7s; }
+        .spark:nth-child(odd) {
+            animation-duration: 5s;
+        }
+        .spark:nth-child(even) {
+            animation-duration: 4.5s;
+        }
+        .spark:nth-child(3n) {
+            animation-duration: 5.5s;
+        }
+        .spark:nth-child(3n+1) {
+            animation-duration: 4s;
+        }
+        .spark:nth-child(5n) {
+            animation-duration: 6s;
+        }
+        .spark:nth-child(7n) {
+            animation-duration: 5.2s;
+        }
     </style>
 </head>
-<body class="text-white min-h-screen">
+<body class="bg-[#1F1F1F] text-white min-h-screen">
+    <!-- Blue Fire Sparks -->
+    <div class="sparks-container">
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+    </div>
     <!-- Navigation Bar -->
     <nav class="fixed top-0 w-full nav-glass z-50">
         <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -112,29 +240,99 @@
         <h2 class="text-3xl font-bold mb-8">Cartoon Movies</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <!-- Movie 1 -->
-            <div class="card-bg rounded-lg p-6 flex flex-col gap-4 items-start hover:scale-105 hover:shadow-xl transition-all duration-300">
-                <h3 class="text-xl font-bold">Shinchan Movie: The Adult Empire Strikes Back</h3>
-                <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+            <div class="card-bg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                <a href="shinchan.html" class="block cursor-pointer">
+                    <img src="images/shinchan bungle in jungle.jpg" 
+                         alt="Shinchan Movie" 
+                         class="w-full h-64 object-cover">
+                </a>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-2">Shinchan Movie: bungle in the jungle</h3>
+                    <p class="text-gray-400 text-sm mb-4">Join Shinchan in his hilarious adventure against the Adult Empire!</p>
+                    <a href="shinchan.html" class="block w-full bg-netflix-red text-white text-center py-2 rounded-md transform transition duration-300 hover:bg-red-700">
+                        Download
+                    </a>
+                </div>
             </div>
+
             <!-- Movie 2 -->
-            <div class="card-bg rounded-lg p-6 flex flex-col gap-4 items-start hover:scale-105 hover:shadow-xl transition-all duration-300">
-                <h3 class="text-xl font-bold">Doraemon: Nobita's Dinosaur</h3>
-                <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+            <div class="card-bg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                <a href="doraemon-dinosaur.html" class="block cursor-pointer">
+                    <img src="images/doraemon dinsour.jpg" 
+                         alt="Doraemon Movie" 
+                         class="w-full h-64 object-cover">
+                </a>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-2">Doraemon: Nobita's Dinosaur</h3>
+                    <p class="text-gray-400 text-sm mb-4">An exciting prehistoric adventure with Doraemon and friends!</p>
+                    <a href="doraemon-dinosaur.html" class="block w-full bg-netflix-red text-white text-center py-2 rounded-md transform transition duration-300 hover:bg-red-700">
+                        Download
+                    </a>
+                </div>
             </div>
+
             <!-- Movie 3 -->
-            <div class="card-bg rounded-lg p-6 flex flex-col gap-4 items-start hover:scale-105 hover:shadow-xl transition-all duration-300">
-                <h3 class="text-xl font-bold">Pokemon: The First Movie</h3>
-                <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+            <div class="card-bg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                <a href="stuart-little.html" class="block cursor-pointer">
+                    <img src="images/stuart lytlle 2.jpg" 
+                         alt="stuart little 2" 
+                         class="w-full h-64 object-cover">
+                </a>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-2">Stuart Little 2 (2002)</h3>
+                    <p class="text-gray-400 text-sm mb-4">Stuart Little 2 (2002) full hd movie in hindi watch now </p>
+                    <a href="https://streamtape.com/v/eoV0R8Rrw0H9x8/Stuart.Little.2.2002.1080p.BRRip.Hindi.Dual-Audio..mkv.mp4" class="block w-full bg-netflix-red text-white text-center py-2 rounded-md transform transition duration-300 hover:bg-red-700">
+                        Download
+                    </a>
+                </div>
             </div>
+
             <!-- Movie 4 -->
-            <div class="card-bg rounded-lg p-6 flex flex-col gap-4 items-start hover:scale-105 hover:shadow-xl transition-all duration-300">
-                <h3 class="text-xl font-bold">Chhota Bheem and the Throne of Bali</h3>
-                <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+            <div class="card-bg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                <a href="doraemon-swords.html" class="block cursor-pointer">
+                    <img src="images/doraemon movie 3 swords.jpg" 
+                         alt="doraemon movie 3 swords" 
+                         class="w-full h-64 object-cover">
+                </a>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-2">Doraemon: Nobita's Three Visionary Swordsmen (1994)</h3>
+                    <p class="text-gray-400 text-sm mb-4">Doraemon: Nobita's Three Visionary Swordsmen (1994)</p>
+                    <a href="https://streamtape.com/v/PGzWv2e0Ddu0ayO/Doraemon_Nobita%27s_Three_Visionary_Swordsmen_%281994%29_Hindi_Dubbed_WEB-DL_720p_ESub_-.mkv.mp4" class="block w-full bg-netflix-red text-white text-center py-2 rounded-md transform transition duration-300 hover:bg-red-700">
+                        Download
+                    </a>
+                </div>
             </div>
+
             <!-- Movie 5 -->
-            <div class="card-bg rounded-lg p-6 flex flex-col gap-4 items-start hover:scale-105 hover:shadow-xl transition-all duration-300">
-                <h3 class="text-xl font-bold">Motu Patlu: King of Kings</h3>
-                <a href="#" class="bg-netflix-red text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors">Download</a>
+            <div class="card-bg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                <a href="motu-patlu.html" class="block cursor-pointer">
+                    <img src="images/motu patlu.jpg" 
+                         alt="Motu Patlu Movie" 
+                         class="w-full h-64 object-cover">
+                </a>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-2">Motu Patlu: King of Kings</h3>
+                    <p class="text-gray-400 text-sm mb-4">The hilarious duo's royal adventure in a magical kingdom!</p>
+                    <a href="https://streamtape.com/v/AkWpwBLzA4cvmm/Motu_Patlu_-_King_of_Kings_2016_WebRip_720p_Hindi_AAC_2.0_x264_-.mkv" class="block w-full bg-netflix-red text-white text-center py-2 rounded-md transform transition duration-300 hover:bg-red-700">
+                        Download
+                    </a>
+                </div>
+            </div>
+
+            <!-- Movie 6 -->
+            <div class="card-bg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                <a href="doraemon-utopia.html" class="block cursor-pointer">
+                    <img src="images/Doraemon the Movie Nobita’s Sky Utopia.jpg" 
+                         alt="doraemon movie" 
+                         class="w-full h-64 object-cover">
+                </a>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold mb-2">Doraemon: Nobita's Sky Utopia</h3>
+                    <p class="text-gray-400 text-sm mb-4">Doraemon: Nobita's Sky Utopia</p>
+                    <a href="https://streamtape.com/v/YLZeQvlM90FvWBp/Doraemon.Nobitas.Sky.Utopia.2023.720p.BluRay.Hindi.Japanese.ESubs-.mkv" class="block w-full bg-netflix-red text-white text-center py-2 rounded-md transform transition duration-300 hover:bg-red-700">
+                        Download
+                    </a>
+                </div>
             </div>
         </div>
     </main>

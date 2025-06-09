@@ -15,11 +15,17 @@
                     animation: {
                         'text-shine': 'text-shine 2s ease-in-out infinite',
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'float': 'float 3s ease-in-out infinite',
                     },
                     keyframes: {
                         'text-shine': {
                             '0%': { 'background-position': '0% 50%' },
                             '100%': { 'background-position': '100% 50%' },
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
                         }
                     }
                 }
@@ -35,9 +41,90 @@
             animation: glow 2s ease-in-out infinite;
         }
 
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .logo-line {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #e50914,
+                #ff0f1f,
+                #e50914,
+                transparent
+            );
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+            transform-origin: left;
+            opacity: 0.8;
+        }
+
+        .logo-line::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(229, 9, 20, 0.3),
+                transparent
+            );
+            filter: blur(2px);
+        }
+
+        .logo-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo-container::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(229, 9, 20, 0.2),
+                transparent
+            );
+            filter: blur(1px);
+        }
+
         body {
             background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
             background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) translateX(100px) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
         }
 
         body::before {
@@ -47,15 +134,80 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                radial-gradient(circle at 25% 25%, rgba(229, 9, 20, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(229, 9, 20, 0.05) 0%, transparent 50%);
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(229, 9, 20, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(229, 9, 20, 0.05) 0%, transparent 50%),
+                linear-gradient(45deg, rgba(229, 9, 20, 0.02) 0%, transparent 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
             pointer-events: none;
+            z-index: 0;
         }
 
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(229, 9, 20, 0.02) 10px,
+                    rgba(229, 9, 20, 0.02) 20px
+                );
+            animation: pulseGlow 4s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .background-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #e50914;
+            border-radius: 50%;
+            animation: floatParticle 15s linear infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 6s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 8s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 10s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 12s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 14s; }
+
         .card-bg {
-            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #2A2A2A 0%, #1F1F1F 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .animate-pulse-slow {
+            animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
 
         .nav-glass {
@@ -63,6 +215,101 @@
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-20px) translateX(10px); opacity: 0; }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .nav-glass::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(229, 9, 20, 0.2),
+                rgba(229, 9, 20, 0.4),
+                rgba(229, 9, 20, 0.2),
+                transparent
+            );
+            animation: navLineShimmer 3s linear infinite;
+            box-shadow: 0 0 10px rgba(229, 9, 20, 0.3);
+        }
+
+        .nav-glass::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            filter: blur(1px);
+            animation: navLineShimmer 3s linear infinite reverse, glowPulse 2s ease-in-out infinite;
+        }
+
+        .nav-particles {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            pointer-events: none;
+        }
+
+        .nav-particles::before,
+        .nav-particles::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #e50914;
+            border-radius: 50%;
+            animation: particleFloat 2s ease-in-out infinite;
+        }
+
+        .nav-particles::before {
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .nav-particles::after {
+            left: 80%;
+            animation-delay: 1s;
+        }
+
+        @keyframes navLineShimmer {
+            0% { 
+                background-position: -200% center;
+                filter: hue-rotate(0deg);
+            }
+            50% {
+                filter: hue-rotate(180deg);
+            }
+            100% { 
+                background-position: 200% center;
+                filter: hue-rotate(360deg);
+            }
         }
 
         .nav-link {
@@ -79,20 +326,264 @@
             height: 2px;
             background: linear-gradient(90deg, #e50914, #ff0f1f);
             transition: width 0.3s ease;
+            box-shadow: 0 0 8px rgba(229, 9, 20, 0.5);
         }
 
         .nav-link:hover::after {
             width: 100%;
         }
+
+        /* Welcome Popup Styles */
+        .welcome-popup {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .welcome-popup.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .welcome-popup.hide {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        @keyframes sparkFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-20vh) translateX(50px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sparkGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 5px rgba(0, 149, 255, 0.8))
+                       drop-shadow(0 0 10px rgba(0, 149, 255, 0.6));
+            }
+            50% {
+                filter: drop-shadow(0 0 8px rgba(0, 149, 255, 0.9))
+                       drop-shadow(0 0 15px rgba(0, 149, 255, 0.7));
+            }
+        }
+
+        .spark {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #0095ff;
+            border-radius: 50%;
+            animation: sparkFloat 4s ease-out infinite, sparkGlow 2s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .spark::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(0, 149, 255, 0.9) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        .spark::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 16px;
+            height: 16px;
+            background: radial-gradient(circle, rgba(0, 149, 255, 0.5) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        .sparks-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .spark:nth-child(1) { left: 2%; animation-delay: 0s; }
+        .spark:nth-child(2) { left: 8%; animation-delay: 0.3s; }
+        .spark:nth-child(3) { left: 15%; animation-delay: 0.6s; }
+        .spark:nth-child(4) { left: 22%; animation-delay: 0.9s; }
+        .spark:nth-child(5) { left: 29%; animation-delay: 1.2s; }
+        .spark:nth-child(6) { left: 36%; animation-delay: 1.5s; }
+        .spark:nth-child(7) { left: 43%; animation-delay: 1.8s; }
+        .spark:nth-child(8) { left: 50%; animation-delay: 2.1s; }
+        .spark:nth-child(9) { left: 57%; animation-delay: 2.4s; }
+        .spark:nth-child(10) { left: 64%; animation-delay: 2.7s; }
+        .spark:nth-child(11) { left: 71%; animation-delay: 3.0s; }
+        .spark:nth-child(12) { left: 78%; animation-delay: 3.3s; }
+        .spark:nth-child(13) { left: 85%; animation-delay: 3.6s; }
+        .spark:nth-child(14) { left: 92%; animation-delay: 3.9s; }
+        .spark:nth-child(15) { left: 98%; animation-delay: 4.2s; }
+        .spark:nth-child(16) { left: 5%; animation-delay: 4.5s; }
+        .spark:nth-child(17) { left: 12%; animation-delay: 4.8s; }
+        .spark:nth-child(18) { left: 19%; animation-delay: 5.1s; }
+        .spark:nth-child(19) { left: 26%; animation-delay: 5.4s; }
+        .spark:nth-child(20) { left: 33%; animation-delay: 5.7s; }
+        .spark:nth-child(21) { left: 40%; animation-delay: 6.0s; }
+        .spark:nth-child(22) { left: 47%; animation-delay: 6.3s; }
+        .spark:nth-child(23) { left: 54%; animation-delay: 6.6s; }
+        .spark:nth-child(24) { left: 61%; animation-delay: 6.9s; }
+        .spark:nth-child(25) { left: 68%; animation-delay: 7.2s; }
+        .spark:nth-child(26) { left: 75%; animation-delay: 7.5s; }
+        .spark:nth-child(27) { left: 82%; animation-delay: 7.8s; }
+        .spark:nth-child(28) { left: 89%; animation-delay: 8.1s; }
+        .spark:nth-child(29) { left: 96%; animation-delay: 8.4s; }
+        .spark:nth-child(30) { left: 3%; animation-delay: 8.7s; }
+
+        .spark:nth-child(odd) {
+            animation-duration: 5s;
+        }
+
+        .spark:nth-child(even) {
+            animation-duration: 4.5s;
+        }
+
+        .spark:nth-child(3n) {
+            animation-duration: 5.5s;
+        }
+
+        .spark:nth-child(3n+1) {
+            animation-duration: 4s;
+        }
+
+        .spark:nth-child(5n) {
+            animation-duration: 6s;
+        }
+
+        .spark:nth-child(7n) {
+            animation-duration: 5.2s;
+        }
+
+        /* Adjust main content z-index */
+        main {
+            position: relative;
+            z-index: 2;
+        }
+
+        .nav-glass {
+            z-index: 3;
+        }
+
+        .welcome-popup {
+            z-index: 4;
+        }
     </style>
 </head>
-<body class="text-white min-h-screen">
+<body class="bg-[#1F1F1F] text-white min-h-screen">
+    <!-- Background Particles -->
+    <div class="background-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Blue Fire Sparks -->
+    <div class="sparks-container">
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+        <div class="spark"></div>
+    </div>
+
+    <!-- Welcome Popup -->
+    <div id="welcomePopup" class="welcome-popup fixed inset-0 z-50 flex items-center justify-center bg-black/80 hidden">
+        <div class="relative bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] p-8 rounded-2xl max-w-lg w-full mx-4 transform transition-all duration-500">
+            <!-- Close Button -->
+            <button onclick="closeWelcomePopup()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            
+            <!-- Content -->
+            <div class="text-center">
+                <!-- Animated Character -->
+                <div class="mb-6 animate-float">
+                    <svg class="w-32 h-32 mx-auto" viewBox="0 0 100 100">
+                        <circle cx="50" cy="40" r="25" fill="#e50914" class="animate-pulse-slow"/>
+                        <circle cx="40" cy="35" r="5" fill="white"/>
+                        <circle cx="60" cy="35" r="5" fill="white"/>
+                        <path d="M40 55 Q50 65 60 55" stroke="white" stroke-width="3" fill="none"/>
+                    </svg>
+                </div>
+                
+                <h2 class="text-3xl font-bold mb-4 bg-gradient-to-r from-netflix-red via-red-500 to-netflix-red bg-clip-text text-transparent animate-text-shine">
+                    Welcome to TITAN HUB!
+                </h2>
+                
+                <p class="text-gray-300 mb-6">
+                    Your ultimate destination for cartoons and anime. Start exploring our vast collection of entertainment!
+                </p>
+                
+                <button onclick="closeWelcomePopup()" class="bg-netflix-red text-white px-8 py-3 rounded-full hover:bg-red-700 transition-colors transform hover:scale-105 duration-300">
+                    Let's Begin!
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation Bar -->
     <nav class="fixed top-0 w-full nav-glass z-50">
+        <div class="nav-particles"></div>
         <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0">
-                    <h1 class="text-2xl font-bold relative group">
+                    <h1 class="text-2xl font-bold relative group logo-container">
                         <a href="index.html" class="flex items-center gap-1">
                             <span class="inline-block bg-gradient-to-r from-netflix-red via-red-600 to-red-500 bg-[length:200%_auto] bg-clip-text text-transparent animate-text-shine">
                                 TITAN
@@ -103,7 +594,7 @@
                             </span>
                             <span class="text-netflix-red text-sm ml-1 glow-text">®</span>
                         </a>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-netflix-red to-red-500 group-hover:w-full transition-all duration-300"></span>
+                        <div class="logo-line"></div>
                     </h1>
                 </div>
                 <div class="hidden md:block">
@@ -133,13 +624,13 @@
 
     <!-- Main Content -->
     <main class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
-        <h2 class="text-3xl font-bold mb-8">Cartoons Download links</h2>
+        <h2 class="text-3xl font-bold mb-8">Cartoons</h2>
         
         <!-- Grid Container -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <!-- Cartoon Card 1 -->
             <div class="card-bg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
-                <a href="kochikame.html">
+                <a href="kochikame.html" class="block cursor-pointer">
                     <img src="images/kochikame.jpg" 
                          alt="Kochikame" 
                          class="w-full h-64 object-cover">
@@ -155,7 +646,7 @@
 
             <!-- Cartoon Card 2 -->
             <div class="card-bg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
-                <a href="ben 10 UA  1.html">
+                <a href="ben 10 UA  1.html" class="block cursor-pointer">
                     <img src="images/ben 10 UA.jpg" 
                          alt="Ben 10 Ultimate Alien (Season 1)" 
                          class="w-full h-64 object-cover">
@@ -171,31 +662,15 @@
 
             <!-- Cartoon Card 3 -->
             <div class="card-bg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
-                <a href="#">
-                    <img src="https://via.placeholder.com/300x450/1f1f1f/ffffff?text=Scooby+Doo" 
+                <a href="scooby-doo.html" class="block cursor-pointer">
+                    <img src="images/Scooby-Doo-Camp-Scare-2010.jpg" 
                          alt="Scooby Doo" 
                          class="w-full h-64 object-cover">
                 </a>
                 <div class="p-4">
-                    <h3 class="text-xl font-bold mb-2">Scooby-Doo</h3>
-                    <p class="text-gray-400 text-sm mb-4">Mystery-solving adventures with the famous talking dog.</p>
-                    <a href="#" class="block w-full bg-netflix-red text-white text-center py-2 rounded-md transform transition duration-300 hover:bg-red-700">
-                        Download
-                    </a>
-                </div>
-            </div>
-
-            <!-- Cartoon Card 4 -->
-            <div class="card-bg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
-                <a href="#">
-                    <img src="https://via.placeholder.com/300x450/1f1f1f/ffffff?text=The+Flintstones" 
-                         alt="The Flintstones" 
-                         class="w-full h-64 object-cover">
-                </a>
-                <div class="p-4">
-                    <h3 class="text-xl font-bold mb-2">The Flintstones</h3>
-                    <p class="text-gray-400 text-sm mb-4">Modern Stone Age family living in Bedrock.</p>
-                    <a href="#" class="block w-full bg-netflix-red text-white text-center py-2 rounded-md transform transition duration-300 hover:bg-red-700">
+                    <h3 class="text-xl font-bold mb-2">Scooby-Doo! Camp Scare (2010)</h3>
+                    <p class="text-gray-400 text-sm mb-4">scooby doo camp scare full hd movie in hindi download now </p>
+                    <a href="scooby-doo.html" class="block w-full bg-netflix-red text-white text-center py-2 rounded-md transform transition duration-300 hover:bg-red-700">
                         Download
                     </a>
                 </div>
@@ -203,23 +678,85 @@
         </div>
     </main>
 
-    <!-- Mobile Menu (Hidden by default) -->
-    <div id="mobile-menu" class="hidden md:hidden pt-16 bg-black/90 fixed top-0 left-0 w-full h-full z-40">
-        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="index.html" class="text-netflix-red block px-3 py-2 rounded-md text-base font-medium">Home</a>
-            <a href="movies.html" class="text-netflix-red block px-3 py-2 rounded-md text-base font-medium">MOVIES</a>
-            <a href="contact.html" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+    <!-- Footer -->
+    <footer class="bg-black/50 py-8 mt-12">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-gray-400">
+                <p>&copy; 2025 TITAN HUB. All rights reserved. Developed by Bigshow <a href="#" class="text-netflix-red hover:text-red-700 transition-colors">Ankit P4P4</a> </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black/95 z-40 hidden">
+        <div class="flex flex-col items-center justify-center h-full">
+            <button id="close-mobile-menu" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <div class="flex flex-col items-center space-y-6">
+                <a href="index.html" class="text-netflix-red text-xl font-medium">Home</a>
+                <a href="movies.html" class="text-gray-300 hover:text-white text-xl font-medium">Movies</a>
+                <a href="contact.html" class="text-gray-300 hover:text-white text-xl font-medium">Contact</a>
+            </div>
         </div>
     </div>
+
+    <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuBtn = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (menuBtn && mobileMenu) {
-                menuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
+        // Welcome Popup
+        function showWelcomePopup() {
+            const popup = document.getElementById('welcomePopup');
+            if (!localStorage.getItem('hasVisited')) {
+                popup.style.display = 'flex';
+                setTimeout(() => {
+                    popup.classList.add('show');
+                }, 50);
+                localStorage.setItem('hasVisited', 'true');
             }
+        }
+
+        function closeWelcomePopup() {
+            const popup = document.getElementById('welcomePopup');
+            popup.classList.remove('show');
+            popup.classList.add('hide');
+            setTimeout(() => {
+                popup.style.display = 'none';
+                popup.classList.remove('hide');
+            }, 500);
+        }
+
+        // Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        closeMobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+        // Show welcome popup when page loads
+        document.addEventListener('DOMContentLoaded', showWelcomePopup);
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.classList.contains('hidden') && 
+                !mobileMenu.contains(event.target) && 
+                !mobileMenuButton.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
         });
     </script>
 </body>
